@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+        <li class="{% if request.resolver_match.url_name == 'diet'%} active {% endif%}">
+          <a class="nav-link" href="{% url 'main:rules'%}">правила игр</a>
+        </li>
+        <li class="nav-item {% if request.resolver_match.url_name == 'progress'%} active {% endif%}">
+          <a class="nav-link" href="{% url 'main:rating_table' %}">турнирная таблица</a>
+        </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item {% if request.resolver_match.url_name == 'diet'%} active {% endif%}">
+            <a class="nav-link" href="">{{ user.first_name|default:'игрок' }}</a>
+          </li>
+          <li class="nav-item {% if request.resolver_match.url_name == 'index'%} active {% endif%}">
+            <a class="nav-link" href="{% url 'auth:logout' %}">выйти</a>
+          </li>
+        {% else %}
+          <li class="nav-item {% if request.resolver_match.url_name == 'personal'%} active {% endif%}">
+            <a class="nav-link" href="{% url 'auth:login' %}">войти</a>
+          </li>
+        {% endif %}
+        {% if user.is_superuser %}
+          <li class="nav-item {% if request.resolver_match.url_name == 'users'%} active {% endif%}">
+            <a class="nav-link" href="{% url 'admin:users' %}">админка</a>
+          </li>
+        {% endif %}
+    </ul>
+  </div>
+</nav>

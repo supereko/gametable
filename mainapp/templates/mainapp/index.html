@@ -1,0 +1,13 @@
+{% extends 'mainapp/base.html' %}
+{% load static %}
+
+{% block container %}
+	<div class="slider">
+		{% include 'mainapp/includes/inc__main_menu.html' %}
+		<div class="text-slider">
+			<h3 class="green">выберите игру</h3>
+			<a href="{% url 'munchkin:start' %}" class="button-order">Манчкин<img src="{% static 'img/arrow.png' %}" alt=""></a>
+		</div>	
+	</div>
+
+{% endblock %}

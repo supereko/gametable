@@ -1,0 +1,182 @@
+[
+    {
+        "name": "Летучие лягушки",
+        "description": "Летучие лягушки",
+        "image": "/img/frogs.jpg",
+        "level": 2,
+        "is_undead": false,
+        "treasure_count": 1,
+        "damage_desc": "острые лягушачьи клыки сгрызают с тебя 2 уровня",
+        "level_down_nom": 2
+    },
+    {
+        "name": "Утконтикора",
+        "description": "Сопротивляется магии +6 против волшебников",
+        "image": "/img/duck.jpg",
+        "level": 6,
+        "is_undead": false,
+        "treasure_count": 2,
+        "damage_desc": "Либо сбрось всю руку, либо потеряй 2 уровня",
+        "level_down_nom": 0
+    },
+    {
+        "name": "Закос под вампира",
+        "description": "Вместо боя клирик может отогнать этого монстра простым Бу и забрать его сокровища. Уровня за такую расправу клирик не получит",
+        "image": "/img/vampire.jpg",
+        "level": 12,
+        "is_undead": false,
+        "treasure_count": 3,
+        "damage_desc": "Загородив выход, рассказывает о себе, потеряй 3 уровня",
+        "level_down_nom": 3
+    },
+    {
+        "name": "Адвокат",
+        "description": "Никогда не бьётся с ворами - корпоративная этика. Встретив адвоката, вор может по желанию сбросить 2 сокровища и в закрытую взять два других",
+        "image": "/img/lawyer.jpg",
+        "level": 6,
+        "is_undead": false,
+        "treasure_count": 2,
+        "damage_desc": "У тебя конфискуют имущество. Каждый соперник, начиная с левого соседа, тянет по карте с твоей руки. Сбрось оставшиеся карты",
+        "level_down_nom": 0
+    },
+    {
+        "name": "Желатиновый октаэдр",
+        "description": "У тебя +1 на смывку",
+        "image": "/img/octahedron.jpg",
+        "level": 2,
+        "is_undead": false,
+        "treasure_count": 1,
+        "damage_desc": "Сбрось все свои большие шмотки",
+        "level_down_nom": 0
+    },
+    {
+        "name": "3872 Орка",
+        "description": "+6 против Дварфов из-за давних обид",
+        "image": "/img/3872orcs.jpg",
+        "level": 10,
+        "is_undead": false,
+        "treasure_count": 3,
+        "damage_desc": "Брось кубик, на 1 или 2 они затаптывают тебя досмерти. В остальных случаях теряешь столько уровней, сколько показал кубик",
+        "level_down_nom": 3
+    },
+    {
+        "name": "Гикающий гик",
+        "description": "+6 против воинов",
+        "image": "/img/geek.jpg",
+        "level": 6,
+        "is_undead": false,
+        "treasure_count": 2,
+        "damage_desc": "Стань нормальным. Сбрось из игры все свои расы и классы",
+        "level_down_nom": 0
+    },
+    {
+        "name": "Невыразимо жуткий неописуемый ужас",
+        "description": "+4 против воинов",
+        "image": "/img/horror.jpg",
+        "level": 14,
+        "is_undead": false,
+        "treasure_count": 4,
+        "damage_desc": "Невыразимо жуткая смерть для всех, кроме волшебника. Волшебник лишается могущества - сбрось карту Волшебник",
+        "level_down_nom": 10
+    },
+    {
+        "name": "Гиппогриф",
+        "description": "Не преследует манчкинов 3 уровня и ниже",
+        "image": "/img/hippogrif.jpg",
+        "level": 16,
+        "is_undead": false,
+        "treasure_count": 4,
+        "damage_desc": "Ты потоптан и покусан, да ещё и растерял шмот. Начиная с правого соседа, каждый игрок берет одно сокровище у тебя из игры или (не глядя) с руки",
+        "level_down_nom": 2
+    },
+    {
+        "name": "Амазонка",
+        "description": "Не бьётся с женщинами, вместо боя даёт одно сокровище",
+        "image": "/img/amazon.jpg",
+        "level": 8,
+        "is_undead": false,
+        "treasure_count": 2,
+        "damage_desc": "Тебя вздула женщина! Ущемление гордости в тяжелой форме. Потеряй все свои классы. Если у тебя нет класса, потеряй 3 уровня",
+        "level_down_nom": 3
+    },
+    {
+        "name": "Конь андедный",
+        "description": "+5 против дварфов",
+        "image": "/img/horse.jpg",
+        "level": 4,
+        "is_undead": true,
+        "treasure_count": 2,
+        "damage_desc": "Лягает, кусает и жутко воняет. Потеряй 2 уровня",
+        "level_down_nom": 2
+    },
+    {
+        "name": "Молотая крысотка",
+        "description": "Тварь из ада. +3 против клириков",
+        "image": "/img/mouse.jpg",
+        "level": 1,
+        "is_undead": false,
+        "treasure_count": 1,
+        "damage_desc": "Лупит тебя кувалдой. Теряешь 1 уровень",
+        "level_down_nom": 1
+    },
+    {
+        "name": "Газебо",
+        "description": "Никто тебе не поможет. Со своим газебо настоящий манчкин должен расправиться сам",
+        "image": "/img/gazebo.jpg",
+        "level": 8,
+        "is_undead": false,
+        "treasure_count": 2,
+        "damage_desc": "",
+        "level_down_nom": 3
+    },
+    {
+        "name": "Языческий демон",
+        "description": "Выходец из ада. +4 против клириков. Ты должен сбросить одну шмотку по своему выбору ДО боя",
+        "image": "/img/tongue_daemon.jpg",
+        "level": 12,
+        "is_undead": false,
+        "treasure_count": 3,
+        "damage_desc": "Отвратительный поцелуй лишает тебя двух (если ты эльф - трёх) уровней",
+        "level_down_nom": 2
+    },
+    {
+        "name": "Г-н Костин",
+        "description": "Если от него пришлось смываться, потеряй уровень, даже если успешно смылся",
+        "image": "/img/mr_bones.jpg",
+        "level": 2,
+        "is_undead": true,
+        "treasure_count": 1,
+        "damage_desc": "Его костлявые прикосновения снимают с тебя 2 уровня",
+        "level_down_nom": 2
+    },
+    {
+        "name": "Бульрог",
+        "description": "Не преследует манчкинов 4 уровня и ниже",
+        "image": "/img/bulrog.jpg",
+        "level": 18,
+        "is_undead": false,
+        "treasure_count": 5,
+        "damage_desc": "Ты запорот до смерти",
+        "level_down_nom": 0
+    },
+    {
+        "name": "Бигфут",
+        "description": "+3 против дварфов и хафлингов",
+        "image": "/img/big_foot.jpg",
+        "level": 12,
+        "is_undead": false,
+        "treasure_count": 3,
+        "damage_desc": "Наступает на тебя и съедает шляпу. Потеряй надетый головняк",
+        "level_down_nom": 1
+    },
+    {
+        "name": "Плутониевый дракон",
+        "description": "Не преследует манчкинов 5 уровня и ниже",
+        "image": "/img/pluto_dragon.jpg",
+        "level": 20,
+        "is_undead": false,
+        "treasure_count": 5,
+        "damage_desc": "ты зажарен и съеден. Это верная смерть",
+        "level_down_nom": 0
+    }
+]

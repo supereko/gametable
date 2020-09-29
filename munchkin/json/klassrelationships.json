@@ -1,0 +1,66 @@
+[
+    {
+        "klass": "Волшебник",
+        "monster": "Утконтикора",
+        "power_modificator": 6,
+        "can_drive_away": false,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    },
+    {
+        "klass": "Клирик",
+        "monster": "Закос под вампира",
+        "power_modificator": 0,
+        "can_drive_away": true,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    },
+    {
+        "klass": "Вор",
+        "monster": "Адвокат",
+        "power_modificator": 6,
+        "can_drive_away": true,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    },
+    {
+        "klass": "Воин",
+        "monster": "Гикающий гик",
+        "power_modificator": 6,
+        "can_drive_away": false,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    },
+    {
+        "klass": "Воин",
+        "monster": "Невыразимо жуткий неописуемый ужас",
+        "power_modificator": 6,
+        "can_drive_away": false,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    },
+    {
+        "klass": "Волшебник",
+        "monster": "Невыразимо жуткий неописуемый ужас",
+        "power_modificator": 0,
+        "can_drive_away": false,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    },
+    {
+        "klass": "Клирик",
+        "monster": "Молотая крысотка",
+        "power_modificator": 3,
+        "can_drive_away": false,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    },
+    {
+        "klass": "Клирик",
+        "monster": "Языческий демон",
+        "power_modificator": 4,
+        "can_drive_away": false,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    }
+]

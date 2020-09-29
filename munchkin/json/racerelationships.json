@@ -1,0 +1,34 @@
+[
+    {
+        "race": "Дварф",
+        "monster": "Конь андедный",
+        "power_modificator": 5,
+        "can_drive_away": false,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    },
+    {
+        "race": "Дварф",
+        "monster": "3872 Орка",
+        "power_modificator": 6,
+        "can_drive_away": false,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    },
+    {
+        "race": "Дварф",
+        "monster": "Бигфут",
+        "power_modificator": 3,
+        "can_drive_away": false,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    },
+    {
+        "race": "Хафлинг",
+        "monster": "Бигфут",
+        "power_modificator": 3,
+        "can_drive_away": false,
+        "damage_modificator": 0,
+        "adv_treasure": 0
+    }
+]

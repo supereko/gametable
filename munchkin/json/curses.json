@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Абропокалипсис",
+        "description": "Судный день настал! Все игроки сбрасывают все свои шмотки, у кого нет ни одной шмотки, теряет 2 уровня. Ничто не поможет отменить это проклятие или избежать его!",
+        "image": "/img/abropokalipsis.jpg",
+        "is_one_time": true,
+        "lose_level_count": 0,
+        "lose_all_staffs": false
+    },
+    {
+        "name": "Курица на башне",
+        "description": "-1 ко всем твоим броскам кубика. Любое проклятие или непотребство, отнимающее у тебя головняк, забирает и Курицу",
+        "image": "/img/chicken_on_your_head.jpg",
+        "is_one_time": false,
+        "lose_level_count": 0,
+        "lose_all_staffs": false
+    },
+    {
+        "name": "Смена пола",
+        "description": "-5 в твоем следующем бою из-за смятения. После этого боя дальнейших штрафов нет. Смена между тем необратима. Проклятие!",
+        "image": "/img/sex_change.jpg",
+        "is_one_time": false,
+        "lose_level_count": 0,
+        "lose_all_staffs": false
+    },
+    {
+        "name": "Потеряй расу",
+        "description": "Сбрось из игры все свои карты расы и стань человеком",
+        "image": "/img/lose_race.jpg",
+        "is_one_time": true,
+        "lose_level_count": 0,
+        "lose_all_staffs": false
+    },
+    {
+        "name": "Потеряй класс",
+        "description": "Сбрось свой класс. Если у тебя в игре несколько классов, сбрось один из них по выбору. Если класса у тебя нет - потеряй уровень",
+        "image": "/img/lose_klass.jpg",
+        "is_one_time": true,
+        "lose_level_count": 0,
+        "lose_all_staffs": false
+    },
+    {
+        "name": "Невыносимо гнусное проклятие",
+        "description": "Потеряй шмотку, которая даёт тебе наибольший бонус",
+        "image": "/img/lose_klass.jpg",
+        "is_one_time": true,
+        "lose_level_count": 0,
+        "lose_all_staffs": false
+    }
+]
