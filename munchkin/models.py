@@ -3,9 +3,8 @@ import random
 from itertools import chain
 
 from django.core.validators import MinValueValidator
-from django.db.models import Sum
 from django.db import models
-
+from django.db.models import Sum
 from munchkin import enums
 
 
@@ -105,6 +104,7 @@ class Munchkin(models.Model):
                 # победить можно только убив монстра или
                 # благодаря божественному вмешательству
                 self.level = 9
+        print(f'{self} получает уровень')
         return self.level
 
     def level_down(self, n):
@@ -114,6 +114,7 @@ class Munchkin(models.Model):
         self.level -= n
         if self.level < 1:
             self.level = 1
+        print(f'{self} теряет уровень')
         return self.level
 
     def set_level(self, n):
@@ -280,6 +281,7 @@ class Munchkin(models.Model):
         hands_place = self.treasurescard_set.filter(
             is_for_hands=True,
             is_one_time=False,
+            status=enums.ON_GAME
         )
         if hands_place.exists():
             hands_place = hands_place.aggregate(
@@ -302,7 +304,8 @@ class Munchkin(models.Model):
         Если другого головняка не надето, то есть
         """
         head_place = self.treasurescard_set.filter(
-            is_headdress=True
+            is_headdress=True,
+            status=enums.ON_GAME
         ).exists()
         return head_place is False
 
@@ -313,7 +316,8 @@ class Munchkin(models.Model):
         Если другого бронника не надето, то можно
         """
         armor_place = self.treasurescard_set.filter(
-            is_armor=True
+            is_armor=True,
+            status = enums.ON_GAME
         ).exists()
         return armor_place is False
 
@@ -324,7 +328,8 @@ class Munchkin(models.Model):
         Если другая обувка не надета, то можно
         """
         boots_place = self.treasurescard_set.filter(
-            is_footwear=True
+            is_footwear=True,
+            status=enums.ON_GAME
         ).exists()
         return boots_place is False
 
@@ -338,13 +343,19 @@ class Munchkin(models.Model):
                     new_thing.is_armor and self.place_for_armor(),
                     new_thing.is_headdress and self.place_on_head(),
                     new_thing.is_for_hands and self.place_on_hands(new_thing),
-                    new_thing.is_footwear and self.place_on_foot()
+                    new_thing.is_footwear and self.place_on_foot(),
+                    new_thing.is_armor == new_thing.is_headdress ==
+                    new_thing.is_for_hands == new_thing.is_footwear ==
+                    new_thing.is_one_time == False
                 ]
         ):
             self.treasurescard_set.add(new_thing)
             new_thing.status = enums.ON_GAME
             new_thing.save()
-        print(f'Для шмотки {new_thing} нет места на манчкине {self}')
+            print(f'{self} надевает на себя {new_thing}')
+        else:
+            print(f'Для шмотки {new_thing} нет места на манчкине {self}')
+            print(f'на {self} надето {self.treasurescard_set.filter(status=enums.ON_GAME)}')
 
     def select_assistants_other_gender(self):
         """
@@ -424,15 +435,17 @@ class Munchkin(models.Model):
                 (self.klasses().count() < 2 and self.is_super() or self.klasses().count() < 1):
             self.klasscard_set.add(card)
             card.status = enums.ON_GAME
+            print(f'{self} вводит в игру карту {card}')
         elif isinstance(card, RaceCard) and \
                 (self.races().count() < 2 and self.is_halfbreed() or
                  self.races().exclude(name='Человек').count() < 1):
             self.racecard_set.add(card)
             card.status = enums.ON_GAME
+            print(f'{self} вводит в игру карту {card}')
         elif isinstance(card, TreasuresCard) and card.is_one_time == False:
             self.wear_thing(card)
         elif isinstance(card, TreasuresCard) and card.is_one_time == True:
-            card.status = enums.ON_GAME
+            print(f'{card} можно использовать только в случае {card.is_moment}')
         else:
             print(f'Карту {card} нельзя ввести в игру')
         card.save()
@@ -443,6 +456,7 @@ class Munchkin(models.Model):
         Функция для приёма/отбивания проклятия
         """
         # проверяем, есть ли карты отбивающие проклятие
+        print(f'{self} пытается избежать проклятия')
         escape_curse_card = self.treasurescard_set.filter(
             name__in=['Хотельное кольцо', 'Шипованные сапоги'],
             status=enums.ON_GAME
@@ -501,7 +515,7 @@ class Munchkin(models.Model):
     def discard(self, card):
         """
         Функция для того чтобы сбросить карту в сброс
-        card - карта, которую
+        card - карта, которую манчкин сбрасывает
         """
         if isinstance(card, TreasuresCard):
             card.status = enums.ON_TREAS_DISCARD
@@ -525,6 +539,7 @@ class Munchkin(models.Model):
             self.cursecard_set.remove(card)
             card.status = enums.ON_DOORS_DISCARD
         card.save()
+        print(f'Карта {card} уходит в сброс')
 
 
     def set_curse(self, victim):
@@ -683,6 +698,17 @@ class Card(models.Model):
     def __str__(self):
         return self.name
 
+    def discard(self):
+        """
+        Функция для сброса карты в сброс
+        """
+        if isinstance(self, TreasuresCard):
+            self.status = enums.ON_TREAS_DISCARD
+        else:
+            self.status = enums.ON_DOORS_DISCARD
+        self.save()
+        print(f'Карта {self} уходит в сброс')
+
 
 class RaceCard(Card):
     """
@@ -714,6 +740,9 @@ class ModificatorCard(Card):
         'модификатор монстра',
         default=False
     )
+
+    def __str__(self):
+        return f'{self.name} {self.bonus}'
 
 
 class CurseCard(Card):

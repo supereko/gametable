@@ -58,6 +58,7 @@ class Fighting(models.Model):
         assistant = random.choice(munchkin.others())
         self.reward()
         print(f'Призван помощник {assistant}')
+        self.munchkins.add(assistant)
         return assistant
 
     def reward(self):
@@ -71,6 +72,7 @@ class Fighting(models.Model):
         all_levels = sum(monster.treasure_count for monster in monsters)
         self.reward_tres = random.randint(0, all_tres)
         self.reward_level = random.randint(0, all_levels)
+        print(f'Обещаем помощничку {self.reward_tres} сокровищ и {self.reward_level} уровней')
 
     def _init_(self, monster, munchkin):
         """
@@ -283,6 +285,9 @@ class Fighting(models.Model):
                     'levels': self.reward_level + adv_level,
                     'treasure_count': self.reward_tres
                 }
+            # побежденных монстров в сброс
+            for monster in self.monsters.all():
+                monster.discard()
         else:
             profit[self.munchkins.first()] = {}
             if assistant:
@@ -453,6 +458,7 @@ class Game(BaseGame):
         # игрок
         munchkin = self.next_munchkin
         print(f'Ходит {munchkin}')
+        print('Первый ход - в открытую')
         # делает первый ход в открытую и решает
         # сыграть монстра с руки
         if munchkin.have_monsters():
@@ -516,54 +522,57 @@ class Game(BaseGame):
             # затем забираем себе
             munchkin.take_card(card)
         # игрок делает второй ход в закрытую и берет эту карту в руку
+        print('Второй ход - в закрытую')
         card = munchkin.get_doors_card(1)
         end_of_move = False
         while not end_of_move:
-            for munchkin in Munchkin.objects.filter(game=self):
+            for munch in Munchkin.objects.filter(game=self):
                 # даем возможность манчкинам украсть уровни
-                stole_level_card = munchkin.othercard_set.filter(
+                stole_level_card = munch.othercard_set.filter(
                     name='Укради уровень'
                 )
                 # если есть карта Укради уровень, есть желание красть и есть у кого красть
                 if all([
                     stole_level_card.exists(),
                     random.choice([True, False]),
-                    munchkin.others().filter(level__gt=1).exists()
+                    munch.others().filter(level__gt=1).exists()
                 ]):
-                    munchkin.othercard_set.remove(stole_level_card)
-                    munchkin.discard(stole_level_card)
-                    victim = random.choice(munchkin.others().filter(level__gt=1))
+                    munch.othercard_set.remove(stole_level_card)
+                    munch.discard(stole_level_card)
+                    victim = random.choice(munch.others().filter(level__gt=1))
                     victim.level_down(1)
-                    munchkin.level_up(1)
-                self.card_relocation(munchkin)
+                    munch.level_up(1)
+                self.card_relocation(munch)
             # проверяем количество карт на руках игроков
             end_of_move = all([
                 member.munchkin.place_in_hands()
                 for member in self.members.all()
             ])
-            while not end_of_move:
-                for member in self.members.all():
-                    if not member.munchkin.place_in_hands():
-                        member.munchkin.discard(
-                            random.choice(
-                                list(member.munchkin.all_card_in_hand())
-                            )
+        while not end_of_move:
+            for member in self.members.all():
+                if not member.munchkin.place_in_hands():
+                    member.munchkin.discard(
+                        random.choice(
+                            list(member.munchkin.all_card_in_hand())
                         )
-                end_of_move = all([
-                    member.munchkin.place_in_hands()
-                    for member in self.members.all()
-                ])
+                    )
+            end_of_move = all([
+                member.munchkin.place_in_hands()
+                for member in self.members.all()
+            ])
             # окончание хода, выводим характеристики игроков, чтоб
             # сработала функция подсчета уровня и возбудилось исключение
             # окончания игры при достижении кем-то 10-ого уровня
         print(f'Окончание хода - {munchkin}')
+        print('----------------------------------------------------------------------------------------')
         self.next_munchkin = munchkin.next
-        self.movement()
+        return self.movement()
 
     def card_relocation(self, munchkin):
         """
         Функция для обмена, продажи, сброса карт
         """
+        print(f'Фаза перестановки карт {munchkin}')
         # даем возможность манчкину наложить проклятие при наличии
         # проклятия и желания его наложить
         if random.choice([True, False]) and munchkin.cursecard_set.exists():
