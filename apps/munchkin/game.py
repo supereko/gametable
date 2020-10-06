@@ -1,7 +1,6 @@
 import random
 
 from django.db import models
-
 from mainapp.models import BaseGame
 from munchkin import enums
 from munchkin.exceptions import TooFewGamersForStartGame

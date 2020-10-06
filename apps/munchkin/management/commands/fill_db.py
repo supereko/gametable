@@ -1,10 +1,8 @@
 import json
 import os
 
-from django.core.management.base import BaseCommand
-
 from authapp.models import Gamer
-from gametable.settings import BASE_DIR
+from django.core.management.base import BaseCommand
 from munchkin.models import CurseCard
 from munchkin.models import KlassCard
 from munchkin.models import KlassRelationShip
@@ -14,6 +12,8 @@ from munchkin.models import OtherCard
 from munchkin.models import RaceCard
 from munchkin.models import RaceRelationShip
 from munchkin.models import TreasuresCard
+
+from gametable.settings import BASE_DIR
 
 
 JSON_PATH = BASE_DIR + '/munchkin/json'

@@ -1,6 +1,6 @@
 from django.urls import re_path
 
-import mainapp.views as mainapp
+import apps.mainapp.views as mainapp
 
 
 app_name = 'mainapp'

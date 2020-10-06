@@ -1,6 +1,5 @@
-from django.urls import re_path
-
 import authapp.views as authapp
+from django.urls import re_path
 
 
 app_name = 'authapp'

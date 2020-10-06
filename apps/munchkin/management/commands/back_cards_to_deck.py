@@ -1,6 +1,5 @@
-from django.core.management.base import BaseCommand
-
 from authapp.models import Membership
+from django.core.management.base import BaseCommand
 from munchkin import enums
 from munchkin.game import Game
 from munchkin.models import CurseCard

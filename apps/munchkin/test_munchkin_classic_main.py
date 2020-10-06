@@ -1,6 +1,5 @@
-from django.test import TestCase
-
 from authapp.models import Gamer
+from django.test import TestCase
 from munchkin.exceptions import TooFewGamersForStartGame
 from munchkin.game import Game
 from munchkin.management.commands import fill_db

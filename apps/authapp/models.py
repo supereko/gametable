@@ -1,6 +1,5 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
 from munchkin.enums import GENDER
 from munchkin.game import Game
 

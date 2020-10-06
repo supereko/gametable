@@ -1,9 +1,8 @@
+from authapp.models import Gamer
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.forms import UserCreationForm
-
-from authapp.models import Gamer
 
 
 class GamerLoginForm(AuthenticationForm):
