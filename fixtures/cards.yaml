@@ -1,0 +1,48 @@
+- model: mainapp.cardtype
+  pk: 1
+  fields:
+    name: door
+- model: mainapp.cardtype
+  pk: 2
+  fields:
+    name: treasure
+- model: mainapp.cardsubtype
+  pk: 1
+  fields:
+    name: item
+    card_type_id: 2
+- model: mainapp.cardsubtype
+  pk: 2
+  fields:
+    name: level
+    card_type_id: 2
+- model: mainapp.cardsubtype
+  pk: 3
+  fields:
+    name: other
+    card_type_id: 2
+- model: mainapp.cardsubtype
+  pk: 4
+  fields:
+    name: monster
+    card_type_id: 1
+- model: mainapp.cardsubtype
+  pk: 5
+  fields:
+    name: weakness
+    card_type_id: 1
+- model: mainapp.cardsubtype
+  pk: 6
+  fields:
+    name: mod
+    card_type_id: 1
+- model: mainapp.cardsubtype
+  pk: 7
+  fields:
+    name: klass
+    card_type_id: 1
+- model: mainapp.cardsubtype
+  pk: 8
+  fields:
+    name: race
+    card_type_id: 1
