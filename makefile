@@ -1,3 +1,9 @@
 lint:
 	isort .
-	pylint --rcfile=setup.cfg $(shell pwd)/gametable
+	pylint --rcfile=setup.cfg $(shell pwd)/apps
+
+load_fixture:
+	python manage.py loaddata $(shell pwd)/fixtures/cards.yaml
+
+admin:
+	echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')" | python manage.py shell
