@@ -1,9 +1,9 @@
+from django.test import TestCase
+
+from authapp.models import Gamer
+from munchkin.game import Game
 from munchkin.management.commands.fill_db import Command
 from munchkin.models import *
-from munchkin.game import Game
-from authapp.models import Gamer
-
-from django.test import TestCase
 
 
 class TestMunchkin(TestCase):

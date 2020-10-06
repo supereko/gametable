@@ -4,9 +4,16 @@ from django.db import models
 
 from mainapp.models import BaseGame
 from munchkin import enums
-from munchkin.exceptions import TooFewGamersForStartGame, TooManyGamersForStartGame
-from munchkin.models import Munchkin, MonsterCard, KlassRelationShip, RaceRelationShip, ModificatorCard, dice_roll, \
-    OtherCard, CurseCard
+from munchkin.exceptions import TooFewGamersForStartGame
+from munchkin.exceptions import TooManyGamersForStartGame
+from munchkin.models import CurseCard
+from munchkin.models import KlassRelationShip
+from munchkin.models import ModificatorCard
+from munchkin.models import MonsterCard
+from munchkin.models import Munchkin
+from munchkin.models import OtherCard
+from munchkin.models import RaceRelationShip
+from munchkin.models import dice_roll
 
 
 class Fighting(models.Model):

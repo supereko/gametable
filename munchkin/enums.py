@@ -1,5 +1,6 @@
 from model_utils import Choices
 
+
 # Количество карт, выдаваемых в начале игры
 CARDS_ON_START = 4
 

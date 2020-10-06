@@ -1,7 +1,11 @@
-from django.shortcuts import render, HttpResponseRedirect
-from authapp.forms import GamerLoginForm, GamerRegisterForm, GamerEditForm
 from django.contrib import auth
+from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
+
+from authapp.forms import GamerEditForm
+from authapp.forms import GamerLoginForm
+from authapp.forms import GamerRegisterForm
 
 
 def login(request):

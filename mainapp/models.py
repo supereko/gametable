@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class BaseGame(models.Model):
     """
     Базовый класс для наследования разными играми

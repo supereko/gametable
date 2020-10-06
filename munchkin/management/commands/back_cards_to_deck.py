@@ -3,9 +3,14 @@ from django.core.management.base import BaseCommand
 from authapp.models import Membership
 from munchkin import enums
 from munchkin.game import Game
-from munchkin.models import (MonsterCard, CurseCard, ModificatorCard,
-                             KlassCard, RaceCard, TreasuresCard,
-                             OtherCard, Munchkin)
+from munchkin.models import CurseCard
+from munchkin.models import KlassCard
+from munchkin.models import ModificatorCard
+from munchkin.models import MonsterCard
+from munchkin.models import Munchkin
+from munchkin.models import OtherCard
+from munchkin.models import RaceCard
+from munchkin.models import TreasuresCard
 
 
 class Command(BaseCommand):
