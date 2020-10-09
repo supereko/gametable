@@ -20,6 +20,7 @@ DEFAULT_APPS = (
 
 COMMON_APPS = (
     'drf_yasg',
+    'rest_framework',
 )
 
 APP_APPS = (
