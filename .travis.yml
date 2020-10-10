@@ -1,0 +1,17 @@
+language: python
+sudo: false
+python:
+  - 3.8.0
+env:
+  - DJANGO_SETTINGS_MODULE=gametable.settings
+  - PYTHONUNBUFFERED=1
+
+before_install:
+  - pipenv install --ignore-pipfile
+
+install: 
+  - make install
+
+script:
+  - make lint
+  - make test
