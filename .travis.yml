@@ -1,0 +1,14 @@
+language: python
+sudo: false
+python:
+  - 3.8.0
+env:
+  - DJANGO_SETTINGS_MODULE="gametable.settings"
+  - PYTHONUNBUFFERED=1
+  - PIPENV_IGNORE_VIRTUALENVS=1
+
+install: 
+  - pipenv install --ignore-pipfile
+
+script:
+  - pipenv run pip freeze
