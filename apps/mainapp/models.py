@@ -65,7 +65,7 @@ class CardSubType(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.get_name_display()
 
     class Meta:
         # pylint: disable=missing-docstring
@@ -100,7 +100,7 @@ class ItemType(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.get_name_display()
 
     class Meta:
         # pylint: disable=missing-docstring
