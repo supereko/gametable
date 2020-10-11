@@ -9,5 +9,5 @@ admin:
 	echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')" | python manage.py shell
 
 ci_lint:
-	isort . --df
-	pylint --rcfile=setup.cfg $(shell pwd)/apps
+	isort . --df --check-only
+	pylint-fail-under --rcfile=setup.cfg $(shell pwd)/apps

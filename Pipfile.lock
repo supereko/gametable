@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d589221be12f3dfc24f0f8aa72c42b68633a70311cac096a5a42a4d4fa0fd157"
+            "sha256": "3bfc8b6721c1b643ce98ccfe65e5e63692f019a38b954b86d87a976b19e56e2a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -324,11 +324,11 @@
         },
         "isort": {
             "hashes": [
-                "sha256:36f0c6659b9000597e92618d05b72d4181104cf59472b1c6a039e3783f930c95",
-                "sha256:ba040c24d20aa302f78f4747df549573ae1eaf8e1084269199154da9c483f07f"
+                "sha256:2c1d044a96c74367ab12188593d134c596747d97aec43b9cdb12eea83b6889d2",
+                "sha256:3820dd92c3214290cda6351f2ae2cedd5170759bc434af600eaad4f7a82a6ade"
             ],
             "index": "pypi",
-            "version": "==5.5.4"
+            "version": "==5.6.3"
         },
         "lazy-object-proxy": {
             "hashes": [
@@ -379,6 +379,14 @@
             ],
             "index": "pypi",
             "version": "==2.3.0"
+        },
+        "pylint-fail-under": {
+            "hashes": [
+                "sha256:4584c0eb6bf2c3dcf9402c74734a49d3a7a86fbe3590276b517fbcbdcba1333a",
+                "sha256:d372e3a698634b48550c4e4af10dc145a6d2c2d9ee26a40690ae635661c85de2"
+            ],
+            "index": "pypi",
+            "version": "==0.3.0"
         },
         "pylint-plugin-utils": {
             "hashes": [
