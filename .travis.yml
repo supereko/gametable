@@ -3,15 +3,12 @@ sudo: false
 python:
   - 3.8.0
 env:
-  - DJANGO_SETTINGS_MODULE=gametable.settings
+  - DJANGO_SETTINGS_MODULE="gametable.settings"
   - PYTHONUNBUFFERED=1
-
-before_install:
-  - pipenv install --ignore-pipfile
+  - PIPENV_IGNORE_VIRTUALENVS=1
 
 install: 
-  - make install
+  - pipenv install --ignore-pipfile
 
 script:
-  - make lint
-  - make test
+  - pipenv run pip freeze
