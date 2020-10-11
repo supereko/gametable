@@ -7,3 +7,7 @@ load_fixture:
 
 admin:
 	echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')" | python manage.py shell
+
+ci_lint:
+	isort . --df
+	pylint --rcfile=setup.cfg $(shell pwd)/apps
