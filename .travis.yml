@@ -5,10 +5,9 @@ python:
 env:
   - DJANGO_SETTINGS_MODULE="gametable.settings"
   - PYTHONUNBUFFERED=1
-  - PIPENV_IGNORE_VIRTUALENVS=1
 
-install: 
-  - pipenv install --ignore-pipfile
+install:
+  - pipenv install --dev
 
 script:
-  - pipenv run pip freeze
+  - make ci_lint
