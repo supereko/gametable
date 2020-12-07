@@ -29,6 +29,9 @@ APP_APPS = (
 
 INSTALLED_APPS = DEFAULT_APPS + COMMON_APPS + APP_APPS
 
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

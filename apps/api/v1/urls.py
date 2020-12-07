@@ -1,5 +1,8 @@
+from django.urls import path
 from rest_framework import routers
 
+from apps.api.v1.redis_views import manage_item
+from apps.api.v1.redis_views import manage_items
 from apps.api.v1.views import CardSubTypeView
 from apps.api.v1.views import CardTypeView
 from apps.api.v1.views import CardView
@@ -22,3 +25,10 @@ router.register('card', CardView)
 router.register('effect', EffectsView)
 
 urlpatterns = router.urls
+
+urlpatterns_for_redis = [
+    path('redis-recs/', manage_items),
+    path('redis-rec/<str:key>', manage_item)
+]
+urlpatterns += urlpatterns_for_redis
+
