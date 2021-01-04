@@ -219,3 +219,64 @@ class Effects(models.Model):
         # pylint: disable=missing-docstring
         verbose_name = 'эффект'
         verbose_name_plural = 'эффекты'
+
+
+class Game(models.Model):
+    """Модель игры."""
+
+    start_time = models.DateTimeField(
+        auto_now_add=True
+    )
+    end_time = models.DateTimeField()
+
+    class Meta:
+        # pylint: disable=missing-docstring
+        verbose_name = 'игра'
+        verbose_name_plural = 'игры'
+
+
+class Player(models.Model):
+    """Модель игрока."""
+
+    name = models.CharField(
+        verbose_name='имя игрока',
+        max_length=25,
+    )
+    level = models.PositiveSmallIntegerField(
+        verbose_name='уровень игрока',
+    )
+    models.ForeignKey(
+        to=Game,
+        on_delete=models.CASCADE,
+        verbose_name='игра',
+        related_name='games',
+    )
+    on_hand = models.ForeignKey(
+        to=Card,on_delete=models.SET_NULL,
+        verbose_name='карты игрока на руке',
+        related_name='hand_cards',
+        null=True, blank=True,
+    )
+    on_table = models.ForeignKey(
+        to=Card,on_delete=models.SET_NULL,
+        verbose_name='карты игрока на столе (в игре)',
+        related_name='table_cards',
+        null=True, blank=True,
+    )
+    on_free_table = models.ForeignKey(
+        to=Card, on_delete=models.SET_NULL,
+        verbose_name='карты игрока на столе (но не в игре)',
+        related_name='freetable_cards',
+        null=True, blank=True,
+    )
+    weakness = models.ForeignKey(
+        to=Card, on_delete=models.SET_NULL,
+        verbose_name='проклятия, ослабляющие игрока',
+        related_name='weakness_cards',
+        null=True, blank=True,
+    )
+
+    class Meta:
+        # pylint: disable=missing-docstring
+        verbose_name = 'игрок'
+        verbose_name_plural = 'игроки'

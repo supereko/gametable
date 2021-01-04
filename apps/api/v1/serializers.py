@@ -4,9 +4,11 @@ from apps.mainapp.models import Card
 from apps.mainapp.models import CardSubType
 from apps.mainapp.models import CardType
 from apps.mainapp.models import Effects
+from apps.mainapp.models import Game
 from apps.mainapp.models import Item
 from apps.mainapp.models import ItemType
 from apps.mainapp.models import Monster
+from apps.mainapp.models import Player
 
 
 class CardTypeSerializer(serializers.ModelSerializer):
@@ -103,4 +105,22 @@ class EffectsSerializer(serializers.ModelSerializer):
     class Meta:
         # pylint: disable=missing-class-docstring
         model = Effects
+        fields = '__all__'
+
+
+class GameSerializer(serializers.ModelSerializer):
+    """Сериализатор игры."""
+
+    class Meta:
+        # pylint: disable=missing-class-docstring
+        model = Game
+        fields = '__all__'
+
+
+class PlayerSerializer(serializers.ModelSerializer):
+    """Сериализатор игрока."""
+
+    class Meta:
+        # pylint: disable=missing-class-docstring
+        model = Player
         fields = '__all__'
