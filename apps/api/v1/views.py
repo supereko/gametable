@@ -81,7 +81,7 @@ class GameView(ModelViewSet):
     """Эндопинт игры (начало новой, получение списка, завершение)."""
 
     model = Game
-    queryset = Game.objects
+    queryset = Game.query
     serializer_class = GameSerializer
 
 
@@ -89,5 +89,5 @@ class PlayerView(ModelViewSet):
     """Эндопинт игрока."""
 
     model = Player
-    queryset = Player.objects
+    queryset = Player.query
     serializer_class = PlayerSerializer

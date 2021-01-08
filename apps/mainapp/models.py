@@ -1,5 +1,10 @@
 # pylint: disable=invalid-str-returned)
+import time
+
+import rom
 from django.db import models
+from rom import ClassProperty
+from rom import Query as mainQuery
 
 
 class CardType(models.Model):
@@ -221,62 +226,80 @@ class Effects(models.Model):
         verbose_name_plural = 'эффекты'
 
 
-class Game(models.Model):
+class Game(rom.Model):
     """Модель игры."""
 
-    start_time = models.DateTimeField(
-        auto_now_add=True
+    # уникальный uid
+    uid = rom.PrimaryKey()
+    # время начала игры
+    start_time = rom.Float(default=time.time)
+    # статус игры
+    # RECRUITMENT = "Набор игроков"
+    # DEAL_OF_CARDS = "Раздача карт"
+    # MOVE = 'Чей-то ход'
+    # GAME_OVER = 'Конец игры'
+    status = rom.String(
+        required=True, suffix=True,
+        default=b'recruitment', keygen=rom.SIMPLE,
     )
-    end_time = models.DateTimeField()
+    # обратная связь для игроков
+    players = rom.OneToMany('Player')
 
-    class Meta:
-        # pylint: disable=missing-docstring
-        verbose_name = 'игра'
-        verbose_name_plural = 'игры'
+    @ClassProperty
+    def query(cls):
+        """Переопределяем чтоб инициализировать свойство model,
+        которое нужно для получения basename при построении маршрутизации"""
+        class Query(mainQuery):
+            __slots__ = '_model model _filters _order_by _limit _select'.split()
+
+            def __init__(self, model, filters=(), order_by=None, limit=None, select=None):
+                self._model = self.model = model
+                self._filters = filters
+                self._order_by = order_by
+                self._limit = limit
+                self._select = select
+
+        return Query(cls)
 
 
-class Player(models.Model):
+class Player(rom.Model):
     """Модель игрока."""
 
-    name = models.CharField(
-        verbose_name='имя игрока',
-        max_length=25,
+    # имя игрока
+    name = rom.String(
+        required=True, index=True,
+        suffix=True, prefix=True,
+        keygen=rom.FULL_TEXT
     )
-    level = models.PositiveSmallIntegerField(
-        verbose_name='уровень игрока',
-    )
-    models.ForeignKey(
-        to=Game,
-        on_delete=models.CASCADE,
-        verbose_name='игра',
-        related_name='games',
-    )
-    on_hand = models.ForeignKey(
-        to=Card,on_delete=models.SET_NULL,
-        verbose_name='карты игрока на руке',
-        related_name='hand_cards',
-        null=True, blank=True,
-    )
-    on_table = models.ForeignKey(
-        to=Card,on_delete=models.SET_NULL,
-        verbose_name='карты игрока на столе (в игре)',
-        related_name='table_cards',
-        null=True, blank=True,
-    )
-    on_free_table = models.ForeignKey(
-        to=Card, on_delete=models.SET_NULL,
-        verbose_name='карты игрока на столе (но не в игре)',
-        related_name='freetable_cards',
-        null=True, blank=True,
-    )
-    weakness = models.ForeignKey(
-        to=Card, on_delete=models.SET_NULL,
-        verbose_name='проклятия, ослабляющие игрока',
-        related_name='weakness_cards',
-        null=True, blank=True,
-    )
+    # уровень игрока
+    level = rom.Integer(default=1)
+    # ссылка на игру
+    game = rom.ManyToOne('Game', on_delete='cascade')
+    # ссылка на карты игрока в руке
+    on_hand = rom.ForeignModel(Card)
+    # ссылка на карты игрока на столе (в игре)
+    on_table = rom.ForeignModel(Card)
+    # ссылка на карты игрока на столе (но не в игре)
+    on_free_table = rom.ForeignModel(Card)
+    # ссылка на карты-проклятия, ослабляющие игрока
+    weakness = rom.ForeignModel(Card)
+    created_at = rom.Float(default=time.time)
 
-    class Meta:
-        # pylint: disable=missing-docstring
-        verbose_name = 'игрок'
-        verbose_name_plural = 'игроки'
+    def str(self):
+        return f'Манчкин {self.name} ({self.level} уровня)'
+
+    @ClassProperty
+    def query(cls):
+        """Переопределяем чтоб инициализировать свойство model,
+        которое нужно для получения basename при построении маршрутизации"""
+        class Query(mainQuery):
+            __slots__ = '_model model _filters _order_by _limit _select'.split()
+
+            def __init__(self, model, filters=(), order_by=None, limit=None, select=None):
+                self._model = self.model = model
+                self._filters = filters
+                self._order_by = order_by
+                self._limit = limit
+                self._select = select
+
+        return Query(cls)
